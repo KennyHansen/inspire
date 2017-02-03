@@ -1,0 +1,48 @@
+.background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: auto;
+    height: 100%;
+    z-index: -1;
+    background-color: transparent;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.quote {
+    padding-right: 80px;
+    text-align: center;
+}
+
+.todos {
+    padding:10px;
+    opacity: 0.85;
+}
+
+.white-text {
+    color:white;
+    text-shadow: 1px 2px 7px black;
+}
+
+.weather {
+    opacity: 0.8;
+    background-color: skyblue;
+    padding: 10px;
+}
+
+.flexy-container {
+    display: flex;
+    justify-content:space-between;
+    flex-direction: column;
+    height:100%;
+}
+
+.flexy-row {
+    display: flex;
+    justify-content:space-between;
+    flex-direction: row;
+}

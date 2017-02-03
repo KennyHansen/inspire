@@ -3,38 +3,83 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Inspire</title>
-	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		crossorigin="anonymous">
+		<link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body id="body">
-	<div id="weather">
-		{{weather}}
+
+	<div id="background" class="background" :style="{ backgroundImage: 'url(' + image.url + ')' }"></div>
+		<div class="flexy-container">
+			<div class="flexy-row">
+				<div></div>
+				<div></div>
+				
+				<div class="card weather" id="weather">
+					<h3>{{weather.name}}</h3>
+					<h2>{{tempC}}&#8451;</h2>
+					<h2>{{tempF}}&#8457;</h2>
+				</div>
+			</div>
+			<div class="flexy-row"></div>
+			<div class="flexy-row">
+				<div></div>
+				<div class="white-text" id="time">
+					
+				</div>
+				<div></div>
+			</div>
+			<div class="flexy-row">
+				<div></div>
+				<div></div>
+				<div class="white-text" id="todos">
+					<div class="card todos black">
+						<h3>To Do</h3>
+						Current Todos: {{todoList.length}}
+						<ul v-for="(item, index) in todoList">
+							<li>{{item}}
+								<button class="btn btn-primary" @click="completeTodo(item)">Complete</button>
+								<button class="btn btn-danger" @click="removeTodo(index)">Remove</button>
+							</li>
+						</ul>
+						<form @submit.prevent="submitTodo(todo)">
+							<input type="text" v-model="todo">
+						</form>
+					</div>
+
+				</div>
+			</div>
+			<div class="flexy-row">
+				<div></div>
+				<div id="quote" class="quote white-text">
+					<h4><i>{{quote}}</i></h4>
+				</div>
+
+				<div></div>
+
+			</div>
+		</div>
 	</div>
 
-	<div id="quote">
-
-	</div>
-
-	<div id="todo">
-
-	</div>
 
 
-
-
-		<!--JS Libraries-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
+	<!--JS Libraries-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.js"></script>
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 	<!--Initialize App-->
 	<script src="app/init.js"></script>
 	<script src="app/components/weather/weather-service.js"></script>
+	<script src="app/components/time/time-service.js"></script>
 	<script src="app/components/image/image-service.js"></script>
 	<script src="app/components/quote/quote-service.js"></script>
 	<script src="app/components/todo/todo-service.js"></script>
 
 	<!--Load your scripts below-->
 	<script src="app/components/weather/weather-controller.js"></script>
+	<script src="app/components/time/time-controller.js"></script>
 	<script src="app/components/image/image-controller.js"></script>
 	<script src="app/components/quote/quote-controller.js"></script>
 	<script src="app/components/todo/todo-controller.js"></script>
