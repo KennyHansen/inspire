@@ -9,7 +9,7 @@
 		//What can you do with this weather object?
 		var weatherData = JSON.parse( weather )
 
-		var temp = weatherData.main.temp;
+		var temp = weatherData.main.temp.toFixed(1);
 		var tempC = temp - 273.15;
 		var tempF = tempC * 1.8 + 32;
 
@@ -19,16 +19,18 @@
 				weather: weatherData,
 				temp: temp,
 				tempC: tempC,
-				tempF: tempF
+				tempF: tempF,
+				tempDisplayC: true
 			},
 			mounted: function() {
 				console.log(this.temp)
 			},
+			methods: {
+				convertTemp() {
+					this.tempDisplayC = !this.tempDisplayC
+				}
+			}
 		})
 	})
-	
-	
-	
-	
-	
+
 }())

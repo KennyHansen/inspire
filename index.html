@@ -17,16 +17,16 @@
 				<div></div>
 				<div></div>
 				
-				<div class="card weather" id="weather">
+				<div class="card weather" @click="convertTemp()" id="weather">
 					<h3>{{weather.name}}</h3>
-					<h2>{{tempC}}&#8451;</h2>
-					<h2>{{tempF}}&#8457;</h2>
+					<h2 v-if='tempDisplayC' @click="convertTemp">{{tempC}}&#8451;</h2>
+					<h2 v-else >{{tempF}}&#8457;</h2>
 				</div>
 			</div>
 			<div class="flexy-row"></div>
 			<div class="flexy-row">
 				<div></div>
-				<div class="white-text" id="time">
+				<div class="white-text time" id="time">
 					
 				</div>
 				<div></div>
@@ -38,14 +38,18 @@
 					<div class="card todos black">
 						<h3>To Do</h3>
 						Current Todos: {{todoList.length}}
+						<hr>
 						<ul v-for="(item, index) in todoList">
 							<li>{{item}}
-								<button class="btn btn-primary" @click="completeTodo(item)">Complete</button>
-								<button class="btn btn-danger" @click="removeTodo(index)">Remove</button>
+								<!--<button type="button" class="btn btn-default btn-xs">-->
+								<span class="glyphicon glyphicon-unchecked" @click="completeTodo(item)"></span> 
+								<!--</button>-->
+								<!--<button class="btn btn-primary" @click="completeTodo(item)">Complete</button>
+								<button class="btn btn-danger" @click="removeTodo(index)">Remove</button>-->
 							</li>
 						</ul>
 						<form @submit.prevent="submitTodo(todo)">
-							<input type="text" v-model="todo">
+							<input type="text" v-model="todo" placeholder="Add todo">
 						</form>
 					</div>
 
@@ -54,7 +58,15 @@
 			<div class="flexy-row">
 				<div></div>
 				<div id="quote" class="quote white-text">
-					<h4><i>{{quote}}</i></h4>
+					
+					<div >
+						<p class="author"><span :class="{faded : !isActive}">{{author}}</span> </p>
+					</div>
+					<div v-on:mouseenter="isActive = !isActive" v-on:mouseleave="isActive = !isActive">
+						<h4><i>{{quote}}</i></h4>
+					</div>
+					
+					
 				</div>
 
 				<div></div>

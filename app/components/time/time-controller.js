@@ -1,12 +1,23 @@
-(function(){
-	// new up the TodoService that has already been configured for your use
-	// There are two methods getTodos returns and array
-	// saveTodos accepts an array and stores it to your local storage
-	
-	//Your TotoService is a global constructor function what can you do here if you new it up?
-	var timeService = new TimeService();
+(function(){	
+	// var timeService = new TimeService();
 
-    timeService.startTime()
+	startTime = function(){
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        if (h > 12 ) h -= 12;
+        document.getElementById('time').innerHTML =
+        '<h1>' + h + ":" + m + '</h1>';
+        setTimeout(startTime, 500);
+    }
 
+    function checkTime(i) {
+        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+        return i;
+    }
+	startTime()
 	
 }())
